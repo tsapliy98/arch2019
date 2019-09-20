@@ -12,25 +12,27 @@ echo 'Создание разделов'
 	echo g;
 	
 	echo n;
-	echo;
-	echo;
+	echo ;
+	echo ;
 	echo +512M;
-	echo y;
+	
 
 	echo n;	
-	echo;
-	echo;
+	echo ;
+	echo ;
 	echo +4G;
 
 	echo n;	
-	echo;
-	echo;
+	echo ;
+	echo ;
 	echo +20G;
+	echo y;
 
 	echo n;	
-	echo;
-	echo;
-	echo;
+	echo ;
+	echo ;
+	echo ;
+	echo y;
 
 	echo t;	
 	echo 1;
