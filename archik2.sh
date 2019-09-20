@@ -44,7 +44,16 @@ pacman -S dialog wpa_supplicant --noconfirm
 
 echo 'Добавляем пользователя и ставим ему пароль'
 useradd -m -g users -G wheel -s /bin/bash sergey
+(
+    echo 1998;
+    echo 1998;
+)   | passwd sergey
 
+echo 'passwd'
+(
+    echo 1998;
+    echo 1998;
+)   | passwd 
 
 echo 'Устанавливаем SUDO'
 echo '%wheel ALL=(ALL) ALL' >> /etc/sudoers
@@ -54,8 +63,5 @@ echo '[multilib]' >> /etc/pacman.conf
 echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
 pacman -Syy
 
-echo 'Перезагрузка'
-exit
-umount -R /mnt
-reboot
+
 
