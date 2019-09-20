@@ -51,8 +51,12 @@ fdisk -l
 echo 'Форматирование дисков'
 mkfs.fat -F32 /dev/sda1 
 mkswap /dev/sda2
-mkfs.ext4 /dev/sda3
-mkfs.ext4 /dev/sda4
+(
+	echo y;
+)	| mkfs.ext4 /dev/sda3
+(
+	echo y;
+)	| mkfs.ext4 /dev/sda4
 
 echo 'Монтирование дисков'
 swapon /dev/sda2
