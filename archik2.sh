@@ -42,26 +42,5 @@ grub-mkconfig -o /boot/grub/grub.cfg
 echo 'Ставим программу для Wi-fi'
 pacman -S dialog wpa_supplicant --noconfirm
 
-echo 'Добавляем пользователя и ставим ему пароль'
-useradd -m -g users -G wheel -s /bin/bash sergey
-(
-    echo 1998;
-    echo 1998;
-)   | passwd sergey
-
-echo 'passwd'
-(
-    echo 1998;
-    echo 1998;
-)   | passwd 
-
-echo 'Устанавливаем SUDO'
-echo '%wheel ALL=(ALL) ALL' >> /etc/sudoers
-
-echo 'Раскомментируем репозиторий multilib Для работы 32-битных приложений в 64-битной системе.'
-echo '[multilib]' >> /etc/pacman.conf
-echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
-pacman -Syy
-
 
 
