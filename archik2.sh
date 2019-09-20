@@ -42,5 +42,11 @@ grub-mkconfig -o /boot/grub/grub.cfg
 echo 'Ставим программу для Wi-fi'
 pacman -S dialog wpa_supplicant --noconfirm
 
+echo 'passwd'
+(
+    echo 1998;
+    echo 1998;
+)   | passwd 
+
 
 
