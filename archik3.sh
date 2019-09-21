@@ -48,7 +48,7 @@ echo 'Обои и темы'
 pacman -S feh lxappearance --noconfirm --needed
 
 echo 'Меню Композитор Редактор'
-pacman -S dmenu compton gedit --noconfirm --needed
+pacman -S dmenu compton gedit thunar --noconfirm --needed
 
 echo 'Чтение и скорость носителей'
 pacman -S hdparm --noconfirm --needed
