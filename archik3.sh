@@ -48,7 +48,7 @@ echo 'Обои и темы'
 pacman -S feh lxappearance --noconfirm --needed
 
 echo 'Меню Композитор Редактор'
-pacman -S rofi compton gedit --noconfirm --needed
+pacman -S dmenu compton gedit --noconfirm --needed
 
 echo 'Чтение и скорость носителей'
 pacman -S hdparm --noconfirm --needed
@@ -75,11 +75,9 @@ mkdir -p ~/.config/i3/config
 mkdir -p ~/.config/i3status/config
 cp /etc/i3/config ~/.config/i3/config
 cp /etc/i3status.conf ~/.config/i3status/config
-su - root
 
-echo 'Включение менеджера входа и менеджера сети'
-systemctl enable lightdm NetworkManager
+(
+    echo 1998;
+)   | sudo systemctl enable lightdm NetworkManager
 
-exho 'Запуск Иксов и завершение скрипта'
-startx
-exit
+
