@@ -34,7 +34,7 @@ echo 'Устанавливаем загрузчик'
 pacman -S grub efibootmgr --noconfirm
 mkdir /boot/efi
 mount /dev/sda1 /boot/efi
-grub-install --target=x86_64-efi --bootloader-id=Arch Linux --efi-directory=/boot/efi --recheck
+grub-install --target=x86_64-efi --bootloader-id=Archik --efi-directory=/boot/efi --recheck
 
 echo 'Обновляем grub.cfg'
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -48,5 +48,6 @@ echo 'passwd'
     echo 1998;
 )   | passwd 
 
-
-
+umount -R /mnt
+reboot
+exit
