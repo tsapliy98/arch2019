@@ -48,25 +48,4 @@ echo 'passwd'
     echo 1998;
 )   | passwd 
 
-echo 'Добавляем пользователя и ставим ему пароль'
-useradd -m -g users -G wheel -s /bin/bash sergey
-(
-    echo 1998;
-    echo 1998;
-)   | passwd sergey
-
-echo 'Устанавливаем SUDO'
-echo '%wheel ALL=(ALL) ALL' >> /etc/sudoers
-
-echo 'Раскомментируем репозиторий multilib Для работы 32-битных приложений в 64-битной системе.'
-echo '[multilib]' >> /etc/pacman.conf
-echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
-pacman -Syy
-
-echo 'Включение менеджера входа и сетевой утилиты'
-systemctl enable lightdm NetworkManager
-
-echo 'Ставим загрузку i3'
-echo "exec i3" >> ~/.xinitrc
-
 echo 'Установка завершена'
