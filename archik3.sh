@@ -34,7 +34,5 @@ pacman -S ttf-liberation ttf-droid ttf-dejavu --noconfirm --needed
 echo 'Сетевая утилита'
 pacman -S networkmanager network-manager-applet networkmanager-openconnect --noconfirm --needed
   
-echo "exec i3" >> ~/.xinitrc
-systemctl enable lightdm NetworkManager
 
 
