@@ -35,6 +35,8 @@ echo 'Сетевая утилита'
 pacman -S networkmanager network-manager-applet networkmanager-openconnect --noconfirm --needed
 
 echo "exec i3" >> ~/.xinitrc
+
+systemctl enable lightdm NetworkManager
   
 
 
