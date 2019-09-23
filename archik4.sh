@@ -7,9 +7,9 @@ mkdir ~/Video
 mkdir ~/.icons
 mkdir ~/.themes
 
-mkdir -p ~/.config/i3/config
+
 mkdir -p ~/.config/i3status/config
-cp /etc/i3/config ~/.config/i3/config
+
 cp /etc/i3status.conf ~/.config/i3status/config
 
 echo 'Установка утилит'
@@ -43,6 +43,3 @@ echo 'Установка программ из AUR'
 
 yay -S  xkblayout-state onedrive --needed --noconfirm 
 
-sudo systemctl enable lightdm NetworkManager
-
-reboot
