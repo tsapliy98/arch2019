@@ -68,7 +68,7 @@ echo 'Установка xorg'
 pacman -S xorg-server xorg-apps xorg-xinit --noconfirm --needed
 
 echo 'Установка экранного менеджера'
-pacman -S i3-wm i3status i3lock dmenu  --noconfirm --needed
+pacman -S i3-wm i3status i3lock dmenu rxvt-unicode  --noconfirm --needed
 
 echo 'Установка экрана входа'
 pacman -S lightdm lightdm-gtk-greeter --noconfirm --needed
@@ -82,16 +82,4 @@ systemctl enable lightdm NetworkManager
 echo 'Ставим загрузку i3'
 echo "exec i3" >> ~/.xinitrc
 
-echo 'Установка драйверов, шрифтов, программ'
-echo 'Установка драйверов'
-pacman -S xf86-video-intel lib32-intel-dri xf86-input-synaptics --noconfirm --needed 
 
-
-echo 'Драйвера на Звук'
-pacman -S pulseaudio pulseaudio-bluetooth pulseaudio-alsa alsa-utils alsa-oss --noconfirm --needed
-
-echo 'Шрифты'
-pacman -S ttf-liberation ttf-droid ttf-dejavu --noconfirm --needed
-
-echo 'Программы'
-pacman -S rxvt-unicode vim pcmanfm pcmanfm-gtk3 gvfs udisks firefox firefox-i18n-ru feh lxappaerance tar p7zip file-roller  --noconfirm --needed
