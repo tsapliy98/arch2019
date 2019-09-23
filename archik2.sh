@@ -69,5 +69,4 @@ systemctl enable lightdm NetworkManager
 echo 'Ставим загрузку i3'
 echo "exec i3" >> ~/.xinitrc
 
-echo '/mnt'
-echo 'reboot'
+echo 'Установка завершена'
