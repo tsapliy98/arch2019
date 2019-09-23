@@ -36,9 +36,13 @@ cd ~
 cd Downloads
 git clone https://aur.archlinux.org/timeshift.git
 cd timeshift
-makepkg -si 
+makepkg -si --needed --noconfirm --skippgpcheck
 cd ~
 
 echo 'Установка программ из AUR'
 
 yay -S  xkblayout-state onedrive --needed --noconfirm 
+
+sudo systemctl enable lightdm NetworkManager
+
+reboot
