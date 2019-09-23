@@ -63,23 +63,11 @@ echo '[multilib]' >> /etc/pacman.conf
 echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
 pacman -Syy
 
-echo 'Установка основных программ'
-echo 'Установка xorg'
-pacman -S xorg-server xorg-apps xorg-xinit --noconfirm --needed
-
-echo 'Установка экранного менеджера'
-pacman -S i3-wm i3status i3lock dmenu rxvt-unicode  --noconfirm --needed
-
-echo 'Установка экрана входа'
-pacman -S lightdm lightdm-gtk-greeter --noconfirm --needed
-
-echo 'Сетевая утилита'
-pacman -S networkmanager network-manager-applet networkmanager-openconnect --noconfirm --needed
-
 echo 'Включение менеджера входа и сетевой утилиты'
 systemctl enable lightdm NetworkManager
 
 echo 'Ставим загрузку i3'
 echo "exec i3" >> ~/.xinitrc
 
-
+echo '/mnt'
+echo 'reboot'
