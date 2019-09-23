@@ -68,7 +68,7 @@ echo 'Выбор зеркал для загрузки'
 echo "Server = http://mirrors.nix.org.ua/linux/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
 
 echo 'Установка основных пакетов'
-pacstrap /mnt base base-devel wget rxvt-unicode
+pacstrap /mnt base base-devel wget git rxvt-unicode pcmanfm firefox firefox-i18n-ru
 
 echo 'Настройка системы'
 genfstab -U -p /mnt >> /mnt/etc/fstab
