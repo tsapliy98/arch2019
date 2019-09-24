@@ -2,15 +2,11 @@
 echo 'Создание директорий'
 mkdir ~/Downloads
 mkdir ~/Documents
+mkdir ~/Pictures
 mkdir ~/Music
 mkdir ~/Video
 mkdir ~/.icons
 mkdir ~/.themes
-
-
-mkdir -p ~/.config/i3status/config
-
-cp /etc/i3status.conf ~/.config/i3status/config
 
 echo 'Установка утилит'
 sudo pacman -S  gvfs tar p7zip file-roller feh lxappearance unrar dosfstools ntfs-3g pulseaudio pulseaudio-bluetooth pulseaudio-alsa  alsa-lib alsa-utils --noconfirm --needed
@@ -42,4 +38,6 @@ cd ~
 echo 'Установка программ из AUR'
 
 yay -S  xkblayout-state onedrive --needed --noconfirm 
+
+
 
