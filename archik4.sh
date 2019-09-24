@@ -8,6 +8,9 @@ mkdir ~/Video
 mkdir ~/.icons
 mkdir ~/.themes
 
+mkdir ~/.config/i3blocks/config
+cp /etc/i3blocks.conf ~/.config/i3blocks/config
+
 echo 'Установка утилит'
 sudo pacman -S  gvfs tar p7zip file-roller feh lxappearance unrar dosfstools ntfs-3g pulseaudio pulseaudio-bluetooth pulseaudio-alsa  alsa-lib alsa-utils --noconfirm --needed
 
