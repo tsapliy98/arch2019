@@ -19,26 +19,35 @@ echo 'Установка xorg'
 pacman -S xorg-server xorg-apps xorg-xinit --noconfirm --needed
 
 echo 'Установка экранного менеджера'
-pacman -S i3-wm i3blocks i3lock dmenu  --noconfirm --needed
+pacman -S i3-wm rofi rxvt-unicode --noconfirm --needed
 
 echo 'Установка экрана входа'
 pacman -S lightdm lightdm-gtk-greeter --noconfirm --needed
 
-echo 'Установка драйверов'
-pacman -S xf86-video-intel lib32-intel-dri xf86-input-synaptics --noconfirm --needed 
+echo 'Установка драйверов Видео карты'
+pacman -S xf86-video-intel lib32-intel-dri --noconfirm --needed 
+
+echo 'Установка драйверов Тачпада'
+pacman -S xf86-input-synaptics --noconfirm --needed 
+
+echo 'Установка драйверов bluetooth'
+pacman -S bluez bluez-utils blueman --noconfirm --needed 
+
+echo 'Установка драйверов Звука'
+pacman -S pulseaudio pulseaudio-alsa pulseaudio-bluetooth pulseaudio-equalizer pulseaudio-lirc --noconfirm --needed
 
 echo 'Шрифты'
-pacman -S ttf-liberation ttf-droid ttf-dejavu --noconfirm --needed
+pacman -S ttf-liberation ttf-droid ttf-dejavu artwiz-fonts  ttf-font-awesome --noconfirm --needed
 
 echo 'Сетевая утилита'
 pacman -S networkmanager network-manager-applet networkmanager-openconnect --noconfirm --needed
 
+echo 'Добавление i3 в xinitrc'
 echo "exec i3" >> ~/.xinitrc
 
-
-
-
-systemctl enable lightdm NetworkManager
-  
+echo 'Включение менеджера входа менеджера интернет и bluetooth'
+systemctl enable lightdm NetworkManager bluetooth.service
+ 
+echo 'Перезагрузка'
 reboot
 
