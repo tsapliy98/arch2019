@@ -28,6 +28,11 @@ cd yay
 makepkg -si --needed --noconfirm --skippgpcheck
 cd ~
 
+yay -S ttf-ms-fonts ttf-tahoma ttf-vista-fonts pa-applet-git polybar timeshift xkblayout-state  --noconfirm --needed
+
+mkdir -p ~/.config/polybar
+cp /usr/share/doc/polybar/config ~/.config/polybar
+
 
 
 
