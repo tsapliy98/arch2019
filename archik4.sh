@@ -8,14 +8,10 @@ mkdir ~/Video
 mkdir ~/.icons
 mkdir ~/.themes
 
-mkdir ~/.config/i3blocks/config
-cp /etc/i3blocks.conf ~/.config/i3blocks/config
-
-echo 'Установка утилит'
-sudo pacman -S  gvfs tar p7zip file-roller feh lxappearance unrar dosfstools ntfs-3g pulseaudio pulseaudio-bluetooth pulseaudio-alsa  alsa-lib alsa-utils --noconfirm --needed
-
 echo 'Установка программ'
-sudo pacman -S  libreoffice-fresh libreoffice-fresh-ru libreoffice-fresh-uk gnome-calculator vlc lxmusic gpicview evince vim compton screenfetch ufw qbittorrent kdeconnect  --noconfirm --needed
+sudo pacman -S firefox firefox-i18n-ru qbittorrent feh gpicview vlc kdeconnect udiskie thunar p7zip tar File Roller unrar libreoffice-fresh libreoffice-fresh-ru libreoffice-fresh-uk atom evince xcalc compton lxappearance --noconfirm --needed
+
+
 
 sudo pacman -Syyu 
 
@@ -32,15 +28,9 @@ cd yay
 makepkg -si --needed --noconfirm --skippgpcheck
 cd ~
 
-cd Downloads
-git clone https://aur.archlinux.org/timeshift.git
-cd timeshift
-makepkg -si --needed --noconfirm --skippgpcheck
-cd ~
 
-echo 'Установка программ из AUR'
 
-yay -S  xkblayout-state onedrive --needed --noconfirm 
+
 
 
 
