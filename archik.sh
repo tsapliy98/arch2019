@@ -15,18 +15,14 @@ echo 'Создание разделов'
 	echo ;
 	echo ;
 	echo +512M;
+	echo t;
+	echo 1;
 	
 
 	echo n;	
 	echo ;
 	echo ;
-	echo +4G;
-
-	echo n;	
-	echo ;
-	echo ;
-	echo +20G;
-	
+	echo +512M;
 
 	echo n;	
 	echo ;
@@ -35,40 +31,58 @@ echo 'Создание разделов'
 	
 
 	echo t;	
-	echo 1;
-	echo 1;
-
-	echo t;	
-	echo 2;
-	echo 19;
-	
+	echo 3;
+	echo 31;
 	echo w;
 )	| fdisk /dev/sda
 
 echo 'Ваша разметка диска'
 fdisk -l
 
-echo 'Форматирование дисков'
-mkfs.fat -F32 /dev/sda1 
-mkswap /dev/sda2
-(
-	echo y;
-)	| mkfs.ext4 /dev/sda3
-(
-	echo y;
-)	| mkfs.ext4 /dev/sda4
+echo 'Форматирование разделов'
+mkfs.fat -F32 /dev/sda1
+mkfs.ext2 /dev/sda2
 
-echo 'Монтирование дисков'
-swapon /dev/sda2
-mount /dev/sda3 /mnt
+echo 'Создание зашифрованого раздела'
+(
+	echo YES;
+	echo 1998;
+	echo 1998;
+)	| cryptsetup luksFormat /dev/sda3
+
+echo 'Открытие зашифрованого раздела'
+(
+	echo 1998;
+)	| cryptsetup open --type luks /dev/sda3 lvm
+
+pvcreate --dataalinment 1m /dev/mapper/lvm
+
+vgcreate vg_arch /dev/mapper/lvm
+
+lvcreate -L 4GB vg_arch -n lv_swap
+lvcreate -L 30GB vg_arch -n lv_root
+lvcreate -l 100%FREE vg_arch -n lv_home
+
+modprobe dm-mod
+vgscan
+vgchange -ay
+
+mkswap /dev/vg_arch/lv_swap
+mkfs.ext4 /dev/vg_arch/lv_root
+mkfs.ext4 /dev/vg_arch/lv_home
+
+swapon /dev//vg_arch/lv_swap
+mount /dev/vg_arch/lv_root /mnt
+mkdir /mnt/boot
 mkdir /mnt/home
-mount /dev/sda4 /mnt/home
+mount /dev/sda2 /mnt/boot
+mount /dev/vg_arch/lv_home /mnt/home
 
 echo 'Выбор зеркал для загрузки'
-echo "Server = http://mirrors.nix.org.ua/linux/archlinux/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
+vim /etc/pacman.d/mirrorlist
 
 echo 'Установка основных пакетов'
-pacstrap /mnt base base-devel wget git 
+pacstrap /mnt base base-devel linux linux-firmware linux-headers netctl dhcpcd lvm2
 echo 'Настройка системы'
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
