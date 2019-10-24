@@ -9,12 +9,6 @@ setfont cyr-sun16
 echo 'Синхронизация системных часов'
 timedatectl set-ntp true
 
-echo 'Разметка дисков'
-cfdisk /dev/sda
-
-echo 'Просмотр разделов'
-fdisk -l
-
 echo 'Форматирование разделов'
 mkfs.fat -F32 /dev/sda1
 mkfs.ext2 /dev/sda2
@@ -66,7 +60,7 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 
 echo 'Переход в установленную систему'
 arch-chroot /mnt <<EOF
-
+EOF
 echo 'Часовой пояс'
 ln -sf /usr/share/zoneinfo/Europe/Kiev /etc/localtime
 
@@ -132,4 +126,4 @@ pacman -S wpa_supplicant dialog
 
 echo 'Выходим из установочной системы'
 exit
-EOF
+
