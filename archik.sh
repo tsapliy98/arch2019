@@ -25,11 +25,13 @@ echo 'Разметка дисков'
 	echo ;
 	echo ;
 	echo +512M
+	echo y;
 	
 	echo n;
 	echo ;
 	echo ;
 	echo ;
+	echo y;
 	echo t;
 	echo 3;
 	echo 31;
