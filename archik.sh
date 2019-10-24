@@ -80,12 +80,7 @@ mount /dev/vg_arch/lv_home /mnt/home
 echo 'Выбор зеркал'
 cat > /etc/pacman.d/mirrorlist <<"EOF"
 ## Ukraine
-Server = http://archlinux.ip-connect.vn.ua/$repo/os/$arch
-Server = https://archlinux.ip-connect.vn.ua/$repo/os/$arch
-Server = http://mirror.mirohost.net/archlinux/$repo/os/$arch
-Server = https://mirror.mirohost.net/archlinux/$repo/os/$arch
 Server = http://mirrors.nix.org.ua/linux/archlinux/$repo/os/$arch
-Server = https://mirrors.nix.org.ua/linux/archlinux/$repo/os/$arch
 EOF
 
 echo 'Установка основных пакетов'
