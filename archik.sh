@@ -9,6 +9,36 @@ setfont cyr-sun16
 echo 'Синхронизация системных часов'
 timedatectl set-ntp true
 
+echo 'Разметка дисков'
+(
+	echo g;
+	
+	echo n;
+	echo ;
+	echo ;
+	echo +512M;
+	
+	echo t;
+	echo 1;
+	
+	
+	echo n;
+	echo ;
+	echo ;
+	echo +512M
+	
+	echo n;
+	echo ;
+	echo ;
+	echo ;
+	
+	echo t;
+	echo 3;
+	echo 31;
+	echo w;
+	
+)	| fdisk /dev/sda
+
 echo 'Форматирование разделов'
 mkfs.fat -F32 /dev/sda1
 
@@ -143,4 +173,4 @@ EOF
 
 umount -R /mnt
 
-rebot
+reboot
