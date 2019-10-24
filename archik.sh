@@ -11,6 +11,7 @@ timedatectl set-ntp true
 
 echo 'Форматирование разделов'
 mkfs.fat -F32 /dev/sda1
+
 mkfs.ext2 /dev/sda2
 
 echo 'Создание зашифрованого раздела'
@@ -27,23 +28,35 @@ vgcreate vg_arch /dev/mapper/lvm
 
 echo 'Создание логических томов'
 lvcreate -L 4GB vg_arch -n lv_swap
+
 lvcreate -L 30GB vg_arch -n lv_root
+
 lvcreate -l 100%FREE vg_arch -n lv_home
 
 echo 'Создание файловых систем и их монтирование'
 modprobe dm-mod
+
 vgscan
+
 vgchange -ay
+
 mkswap /dev/vg_arch/lv_swap
+
 mkfs.ext4 /dev/vg_arch/lv_root
+
 mkfs.ext4 /dev/vg_arch/lv_home
 
 echo 'Монтирование разделов'
 swapon /dev//vg_arch/lv_swap
+
 mount /dev/vg_arch/lv_root /mnt
+
 mkdir /mnt/boot
+
 mkdir /mnt/home
+
 mount /dev/sda2 /mnt/boot
+
 mount /dev/vg_arch/lv_home /mnt/home
 
 echo 'Выбор зеркал'
@@ -60,7 +73,7 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 
 echo 'Переход в установленную систему'
 arch-chroot /mnt <<EOF
-EOF
+
 echo 'Часовой пояс'
 ln -sf /usr/share/zoneinfo/Europe/Kiev /etc/localtime
 
@@ -126,4 +139,8 @@ pacman -S wpa_supplicant dialog
 
 echo 'Выходим из установочной системы'
 exit
+EOF
 
+umount -R /mnt
+
+rebot
