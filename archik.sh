@@ -24,20 +24,18 @@ echo 'Разметка дисков'
 	echo n;
 	echo ;
 	echo ;
-	echo +512M
-	echo y;
+	echo +512;
 	
 	echo n;
 	echo ;
 	echo ;
 	echo ;
-	echo y;
 	echo t;
 	echo 3;
 	echo 31;
 	echo w;
 	
-)	| fdisk /dev/sda
+)	yes | fdisk /dev/sda
 
 echo 'Просмотр разделов'
 fdisk -l
