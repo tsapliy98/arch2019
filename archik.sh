@@ -10,34 +10,7 @@ echo 'Синхронизация системных часов'
 timedatectl set-ntp true
 
 echo 'Разметка дисков'
-(
-	echo g;
-	
-	echo n;
-	echo ;
-	echo ;
-	echo +512M;
-	echo t;
-	echo 1;
-	
-	
-	echo n;
-	echo ;
-	echo ;
-	echo +512;
-	echo y;
-	
-	echo n;
-	echo ;
-	echo ;
-	echo ;
-	echo y;
-	echo t;
-	echo 3;
-	echo 31;
-	echo w;
-	
-)	 | fdisk /dev/sda
+cfdisk /dev/sda
 
 echo 'Просмотр разделов'
 fdisk -l
