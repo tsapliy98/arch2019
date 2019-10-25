@@ -147,9 +147,6 @@ arch-chroot /mnt <<EOF
 echo 'Ставим пакет загрузчика'
 pacman -S grub efibootmgr
 
-echo 'Настраиваем загрузчик'
-sed 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="resume=/dev/mapper/vg_arch-lv_swap cryptdevice=/dev/sda3:vg_arch loglevel=3 quiet"/g' -i /etc/default/grub
-
 echo 'Создаем директорию для загрузчика'
 mkdir /boot/efi
 
@@ -159,6 +156,9 @@ mount /dev/sda1 /boot/efi
 echo 'Ставим сам загрузчик на диск'
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 
+echo 'Настраиваем загрузчик'
+sed -i 's|^GRUB_CMDLINE_LINUX_DEFAULT.*|GRUB_CMDLINE_LINUX_DEFAULT="resume=/dev/mapper/vg_arch-lv_swap cryptdevice=/dev/sda3:vg_arch loglevel=3 quiet"|' /etc/default/grub
+
 echo 'Обновляем конфиг загрузчика'
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -167,5 +167,13 @@ pacman -S openssh
 
 echo 'Ставим программы для wifi'
 pacman -S wpa_supplicant dialog
+
+echo 'Выходим из установленой системы'
+exit
 EOF
 
+echo 'Размонтируем mnt'
+umount -R /mnt
+
+echo 'Перезагружаемся'
+reboot
