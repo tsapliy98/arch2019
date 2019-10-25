@@ -142,14 +142,12 @@ sed -i 's/HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)/H
 echo 'Оновление initramfs'
 mkinitcpio -p linux
 
-echo 'Пароль суперпользователя'
-passwd
 
 echo 'Ставим пакет загрузчика'
 pacman -S grub efibootmgr
 
 echo 'Настраиваем загрузчик'
-sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="resume=/dev/mapper/vg_arch-lv_swap cryptdevice=/dev/sda3:vg_arch loglevel=3 quiet"/' /etc/default/grub
+sed 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="resume=/dev/mapper/vg_arch-lv_swap cryptdevice=/dev/sda3:vg_arch loglevel=3 quiet"/g' -i /etc/default/grub
 
 echo 'Создаем директорию для загрузчика'
 mkdir /boot/efi
@@ -168,11 +166,5 @@ pacman -S openssh
 
 echo 'Ставим программы для wifi'
 pacman -S wpa_supplicant dialog
-
-echo 'Выходим из установочной системы'
-exit
 EOF
 
-umount -R /mnt
-
-reboot
