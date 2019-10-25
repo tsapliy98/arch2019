@@ -141,6 +141,9 @@ sed -i 's/HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)/H
 
 echo 'Оновление initramfs'
 mkinitcpio -p linux
+
+echo 'Устанавливаем пароль рута'
+echo "root:1998" | chpasswd
 EOF
 
 arch-chroot /mnt <<EOF
