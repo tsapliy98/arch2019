@@ -16,6 +16,7 @@ echo 'Разметка дисков'
 	echo n;
 	echo ;
 	echo ;
+		y;
 	echo +512M;
 	
 	echo t;
@@ -25,13 +26,14 @@ echo 'Разметка дисков'
 	echo n;
 	echo ;
 	echo ;
+		y;
 	echo +512M
 	
 	echo n;
 	echo ;
 	echo ;
 	echo ;
-	
+		y;
 	echo t;
 	echo 3;
 	echo 31;
@@ -111,9 +113,9 @@ echo 'Синхронизация времени'
 hwclock --systohc --utc
 
 echo 'Локализация'
-echo "en_US.UTF-8 UTTF-8" > /etc/locale.gen
+echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 echo "en_US ISO-8859-1" >> /etc/locale.gen
-echo "ru_UA.UTF-8 UTTF-8" >> /etc/locale.gen
+echo "ru_UA.UTF-8 UTF-8" >> /etc/locale.gen
 echo "ru_UA KOI8-U" >> /etc/locale.gen
 
 echo 'Обновляем локализацию'
@@ -147,7 +149,7 @@ echo 'Ставим пакет загрузчика'
 pacman -S grub efibootmgr
 
 echo 'Настраиваем загрузчик'
-sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="resume=/dev/mapper/vg_arch-lv_swap cryptdevice=/dev/sda3:vg_arch loglevel=3 quiet"'
+sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="resume=/dev/mapper/vg_arch-lv_swap cryptdevice=/dev/sda3:vg_arch loglevel=3 quiet"/' /etc/default/grub
 
 echo 'Создаем директорию для загрузчика'
 mkdir /boot/efi
