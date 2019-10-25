@@ -141,8 +141,9 @@ sed -i 's/HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)/H
 
 echo 'Оновление initramfs'
 mkinitcpio -p linux
+EOF
 
-
+arch-chroot /mnt <<EOF
 echo 'Ставим пакет загрузчика'
 pacman -S grub efibootmgr
 
