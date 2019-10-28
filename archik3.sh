@@ -12,7 +12,14 @@ fi
 
 sleep 2
 
+echo 'Установка раскладки клавиатуры'
+loadkeys ru
 
+echo 'Установка шрифта для кирилицы'
+setfont cyr-sun16
+
+echo 'Синхронизация системных часов'
+timedatectl set-ntp true
 
 
 read -p 'Шифрование [Y|n]' encrypt
