@@ -2,7 +2,7 @@
 
 read -p "Выберите разметку диска: 1 MBR; 2 GPT_UEFI; 3 GPT_UEFI_LVM; " disk
 if [[ "$disk" -eq 1 ]]; then
-    sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/sda
+    ( 
         o
         n
         p
@@ -33,9 +33,9 @@ if [[ "$disk" -eq 1 ]]; then
         2
         82
         w
-    EOF
+    )   | fdisk /dev/sda
 elif [[ "$disk" -eq 2 ]]; then
-    sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/sda
+    ( 
         g
         n
         ;
@@ -63,9 +63,9 @@ elif [[ "$disk" -eq 2 ]]; then
         2
         19
         w
-    EOF
+    )   | fdisk /dev/sda
 elif [[ "$disk" -eq 3 ]]; then
-    sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/sda
+    ( 
         g
         n
         ;
@@ -88,7 +88,7 @@ elif [[ "$disk" -eq 3 ]]; then
         3
         31
         w
-    EOF
+   )    | fdisk /dev/sda
 fi 
 
 
