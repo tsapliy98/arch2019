@@ -12,6 +12,9 @@ fi
 
 sleep 2
 
+
+
+
 read -p 'Шифрование [Y|n]' encrypt
 if [[ "$encrypt" -eq "Y" ]]; then
     cryptsetup luksFormat /dev/sda3
