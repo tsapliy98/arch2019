@@ -38,7 +38,7 @@ elif [[ "$encrypt" -eq "n" ]]; then
     exit
 fi 
 
-read -p 'Выберите форматирование: 1 MBR; 2 GPT_UEFI; 3 GPT_UEFI_LVM' formating
+read -p 'Выберите форматирование: 1 MBR; 2 GPT_UEFI; 3 GPT_UEFI_LVM; ' formating
 if [[ "$formating" -eq 1 ]]; then
     mkfs.ext2 /dev/sda1
     mkswap /dev/sda2
@@ -59,7 +59,7 @@ fi
    
 sleep 2 
 
-read -p 'Выберите монтирование: 1 MBR; 2 GPT_UEFI; 3 GPT_UEFI_LVM' mount 
+read -p 'Выберите монтирование: 1 MBR; 2 GPT_UEFI; 3 GPT_UEFI_LVM; ' mount 
 if [[ "$mount" -eq 1 ]]; then
     mount /dev/sda3 /mnt
     mkdir /mnt/boot
@@ -88,7 +88,7 @@ cat > /etc/pacman.d/mirrorlist <<"EOF"
 Server = http://mirrors.nix.org.ua/linux/archlinux/$repo/os/$arch
 EOF
 
-read -p 'Выберите установку: 1 MBR; 2 GPT_UEFI; 3 GPT_UEFI_LVM' installing
+read -p 'Выберите установку: 1 MBR; 2 GPT_UEFI; 3 GPT_UEFI_LVM; ' installing
 if [[ "$installing" -eq 1 ]]; then
     pacstrap /mnt base base-devel linux linux-firmware linux-headers netctl dhcpcd vim man-db man-pages texinfo vim wget git
 elif [[ "$installing" -eq 2 ]]; then
@@ -100,7 +100,7 @@ fi
 echo 'Fstab' 
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
-read -p 'Выберите тип установки: 1 MBR; 2 GPT_UEFI; 3 GPT_UEFI_LVM' chrooting
+read -p 'Выберите тип установки: 1 MBR; 2 GPT_UEFI; 3 GPT_UEFI_LVM; ' chrooting
 if [[ "$chrooting" -eq 1 ]]; then
     arch-chroot /mnt <<EOF
     echo 'Часовой пояс'
@@ -151,7 +151,7 @@ if [[ "$chrooting" -eq 1 ]]; then
     pacman -Syy
     echo 'Выходим из установленой системы'
     exit
-EOF
+    EOF
 elif [[ "$chrooting" -eq 2 ]]; then
     arch-chroot /mnt <<EOF
     echo 'Часовой пояс'
@@ -206,7 +206,7 @@ elif [[ "$chrooting" -eq 2 ]]; then
     pacman -Syy
     echo 'Выходим из установленой системы'
     exit
-EOF
+    EOF
 elif [[ "$chrooting" -eq 3 ]]; then
     arch-chroot /mnt <<EOF
     echo 'Часовой пояс'
@@ -265,11 +265,11 @@ elif [[ "$chrooting" -eq 3 ]]; then
     pacman -Syy
     echo 'Выходим из установленой системы'
     exit
-EOF
+    EOF
+fi
 
 echo 'Размонтируем mnt'
 umount -R /mnt
 
 echo 'Перезагружаемся'
 reboot
-    
